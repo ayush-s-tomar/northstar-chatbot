@@ -15,9 +15,7 @@
 
 ### 🎥 Demo Video
 
-https://github.com/user-attachments/assets/PLACEHOLDER-replace-after-upload
-
-*(Upload `NorthStar_Final_Perfect_10.mp4` as a comment on any Issue/PR to get a GitHub CDN link, then swap it in above — see [Adding the Demo Video](#adding-the-demo-video) below.)*
+https://github.com/user-attachments/assets/88b09144-f21a-4413-8742-7a024d388501
 
 ---
 
@@ -180,17 +178,6 @@ GROQ_API_KEY=your_groq_api_key_here
 - **Conversation memory** — remember context across sessions
 - **Analytics dashboard** — track which flows are hit most, drop-off points
 - **Multi-language support** — serve North American + international customers
-
----
-
-## Adding the Demo Video
-
-GitHub doesn't accept direct video uploads through file edits — the CDN link has to come from dragging the file into a comment box:
-
-1. Open any Issue (or create one) in this repo.
-2. Drag `NorthStar_Final_Perfect_10.mp4` into the comment text box and wait for it to upload.
-3. GitHub inserts a link like `https://github.com/user-attachments/assets/xxxxxxxx` — copy it.
-4. Paste that link in place of the `PLACEHOLDER` line near the top of this README, then delete the comment (the CDN link stays valid even after deletion).
 
 ---
 
