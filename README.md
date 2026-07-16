@@ -127,8 +127,7 @@ northstar-chatbot/
 │   └── public/
 │       └── index.html
 ├── docs/
-│   ├── northstar-brand.png   # Brand/outro card
-│   └── demo.mp4               # Screen-recorded walkthrough
+│   └── northstar-brand.png   # Brand/outro card
 └── README.md
 ```
 
