@@ -1,6 +1,23 @@
-# North Star Support Chatbot
+# North Star — AI Customer Support Chatbot
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
+![React](https://img.shields.io/badge/frontend-React_18-61DAFB)
+![LLM](https://img.shields.io/badge/LLM-Groq_Llama_3.3_70B-orange)
+![Status](https://img.shields.io/badge/status-not_deployed-lightgrey)
 
-> Paste a message. Get instant, AI-powered customer support — order tracking, returns, product recommendations, and live agent handoff in seconds.
+> Paste a message. Get instant, AI-powered customer support — order tracking, returns, product recommendations, and live agent handoff, in seconds.
+
+[📝 Source](https://github.com/ayush-s-tomar/northstar-chatbot) &nbsp;|&nbsp; [👤 LinkedIn](https://www.linkedin.com/in/ayush-s-tomar/)
+
+<p align="center">
+  <img src="docs/northstar-brand.png" alt="North Star Support Chatbot" width="700">
+</p>
+
+### 🎥 Demo Video
+
+https://github.com/user-attachments/assets/PLACEHOLDER-replace-after-upload
+
+*(Upload `NorthStar_Final_Perfect_10.mp4` as a comment on any Issue/PR to get a GitHub CDN link, then swap it in above — see [Adding the Demo Video](#adding-the-demo-video) below.)*
 
 ---
 
@@ -8,18 +25,16 @@
 
 Outdoor gear shoppers need fast, accurate support — but human agents can't be online 24/7, and generic chatbots give robotic, useless responses.
 
-**North Star Support Bot handles the full support loop, instantly.**
-
-Not a canned-response FAQ widget. A conversational AI agent that understands intent, routes intelligently, and responds like a knowledgeable team member.
+**North Star handles the full support loop, instantly.** Not a canned-response FAQ widget — a conversational AI agent that understands intent, routes intelligently, and responds like a knowledgeable team member.
 
 ---
 
 ## What It Does
 
-Type a message. The bot detects your intent and routes to the right flow automatically:
+Type a message. The bot ("Stella") detects intent and routes to the right flow automatically:
 
 | Flow | What happens |
-|------|-------------|
+|------|--------------|
 | 📦 **Order Tracking** | Asks for order number → returns live simulated status |
 | 🔄 **Returns & Exchanges** | Explains 30-day policy + provides returns link |
 | 🏕️ **Product Recommendations** | Asks 1-2 clarifying questions → recommends the right gear category |
@@ -38,28 +53,27 @@ User message → [Intent Detection] → [Flow Router] → [Groq LLM Response]
 
 **Order Tracking:**
 ```
-User:  Where is my order?
+User:   Where is my order?
 Stella: Sure! What's your order number?
-User:  #111
+User:   #111
 Stella: Your order is on its way and arriving tomorrow! Is there anything else I can help you with?
 ```
 
 **Human Handoff:**
 ```
-User:  This is ridiculous, I want a real person
+User:   This is ridiculous, I want a real person
 Stella: I'm sorry you're frustrated. Let me connect you with a live agent right away...
         [Live Agent transfer initiated]
 ```
 
 **Fallback:**
 ```
-User:  asdfghjkl
-Stella: I didn't quite catch that! I can help you with order tracking, returns, product recommendations, or connect you with our team.
+User:   asdfghjkl
+Stella: I didn't quite catch that! I can help you with order tracking, returns,
+        product recommendations, or connect you with our team.
 ```
 
----
-
-## Mock Order Data
+### Mock Order Data
 
 | Order # | Status | Detail |
 |---------|--------|--------|
@@ -82,41 +96,18 @@ Stella: I didn't quite catch that! I can help you with order tracking, returns, 
 
 ---
 
-## Run Locally
+## Conversation Flows (Detail)
 
-```bash
-# 1. Clone
-git clone https://github.com/ayush-s-tomar/northstar-chatbot.git
-cd northstar-chatbot
-```
+**Intent recognition** handles natural variations automatically:
 
-**Backend:**
-```bash
-cd backend
-py -3.11 -m pip install -r requirements.txt
-cp .env.example .env
-# Paste your Groq API key into .env
-# Free key at: https://console.groq.com
-py -3.11 -m uvicorn main:app --reload --port 8000
-# → http://localhost:8000/docs
-```
+- "Where is my order?" / "Track my package" / "Order status" → Order Tracking
+- "I want to return this" / "Exchange policy" / "Send it back" → Returns
+- "What should I buy?" / "Gear recommendations" / "Help me find a tent" → Product Recs
+- "Speak to a human" / "This is frustrating" / "Real person" → Human Handoff
 
-**Frontend** (new terminal):
-```bash
-cd frontend
-npm install
-npm start
-# → http://localhost:3000
-```
+**Shipping policy (built-in):** Standard 3–5 business days, Expedited 1–2 business days.
 
----
-
-## Environment Variables
-
-`backend/.env`:
-```
-GROQ_API_KEY=your_groq_api_key_here
-```
+**Return policy (built-in):** 30-day returns, unused items, original packaging required.
 
 ---
 
@@ -128,37 +119,79 @@ northstar-chatbot/
 │   ├── main.py           # FastAPI app — intent detection + all 5 chat flows
 │   ├── requirements.txt
 │   └── .env.example
-└── frontend/
-    ├── src/
-    │   ├── App.js        # React chat UI — Stella persona, quick-reply buttons
-    │   └── index.js
-    └── public/
-        └── index.html
+├── frontend/
+│   ├── src/
+│   │   ├── App.js        # React chat UI — Stella persona, quick-reply buttons,
+│   │   │                  # order cards, animations
+│   │   └── index.js
+│   └── public/
+│       └── index.html
+├── docs/
+│   ├── northstar-brand.png   # Brand/outro card
+│   └── demo.mp4               # Screen-recorded walkthrough
+└── README.md
 ```
 
 ---
 
-## Conversation Flows (Detail)
+## Run Locally
 
-**Intent Recognition** — handles natural variations automatically:
-- "Where is my order?" / "Track my package" / "Order status" → Order Tracking
-- "I want to return this" / "Exchange policy" / "Send it back" → Returns
-- "What should I buy?" / "Gear recommendations" / "Help me find a tent" → Product Recs
-- "Speak to a human" / "This is frustrating" / "Real person" → Human Handoff
+```bash
+# 1. Clone
+git clone https://github.com/ayush-s-tomar/northstar-chatbot.git
+cd northstar-chatbot
 
-**Shipping Policy (built-in):**
-- Standard: 3–5 business days
-- Expedited: 1–2 business days
+# 2. Backend
+cd backend
+py -3.11 -m pip install -r requirements.txt
+cp .env.example .env
+# Paste your Groq API key into .env — free key at https://console.groq.com
+py -3.11 -m uvicorn main:app --reload --port 8000
+# → http://localhost:8000/docs
 
-**Return Policy (built-in):**
-- 30-day returns, unused items, original packaging required
+# 3. Frontend (new terminal)
+cd ../frontend
+npm install
+npm start
+# → http://localhost:3000
+```
+
+**Environment variables** (`backend/.env`):
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+---
+
+## Known Limitations
+
+- **Not deployed.** This is currently a local-run portfolio project — no live demo link. Order data, returns, and recommendations are all mocked/simulated rather than backed by a real store or CRM.
+- **No persistent conversation memory** — each session starts fresh; the bot doesn't recall prior conversations or link them to a real customer account.
+- **No authentication layer** — single-session demo, not multi-tenant.
+- **Order lookup is a fixed mock table** (`#111`, `#222`, `#333`) rather than a real order management system.
 
 ---
 
 ## What I'd Add Next
 
+- **Deploy** backend to Render and frontend to Vercel/Streamlit for a live demo link
 - **User authentication** — link order numbers to real accounts
 - **WebSocket streaming** — token-by-token response like ChatGPT
 - **Conversation memory** — remember context across sessions
 - **Analytics dashboard** — track which flows are hit most, drop-off points
 - **Multi-language support** — serve North American + international customers
+
+---
+
+## Adding the Demo Video
+
+GitHub doesn't accept direct video uploads through file edits — the CDN link has to come from dragging the file into a comment box:
+
+1. Open any Issue (or create one) in this repo.
+2. Drag `NorthStar_Final_Perfect_10.mp4` into the comment text box and wait for it to upload.
+3. GitHub inserts a link like `https://github.com/user-attachments/assets/xxxxxxxx` — copy it.
+4. Paste that link in place of the `PLACEHOLDER` line near the top of this README, then delete the comment (the CDN link stays valid even after deletion).
+
+---
+
+*Part of my AI developer portfolio — agents that do real, autonomous work, not chatbots with a prompt. See also: [SalesAgent](https://github.com/ayush-s-tomar/salesagent), an autonomous B2B lead research and outreach agent.*
