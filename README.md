@@ -3,6 +3,8 @@
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
 ![React](https://img.shields.io/badge/frontend-React_18-61DAFB)
 ![LLM](https://img.shields.io/badge/LLM-Groq_Llama_3.3_70B-orange)
+![CI](https://github.com/ayush-s-tomar/northstar-chatbot/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-not_deployed-lightgrey)
 
 > Paste a message. Get instant, AI-powered customer support — order tracking, returns, product recommendations, and live agent handoff, in seconds.
@@ -15,7 +17,19 @@
 
 ### 🎥 Demo Video
 
-https://github.com/user-attachments/assets/88b09144-f21a-4413-8742-7a024d388501
+https://github.com/user-attachments/assets/b418d176-05c9-449b-9ff2-4a1c6c555221
+
+### 🖼️ Demo Screenshot
+
+<p align="center">
+  <img src="docs/demo-screenshot.png" alt="North Star chat UI screenshot" width="700">
+</p>
+
+### 🎞️ Demo GIF
+
+<p align="center">
+  <img src="docs/demo.gif" alt="North Star chat walkthrough gif" width="700">
+</p>
 
 ---
 
@@ -91,6 +105,7 @@ Stella: I didn't quite catch that! I can help you with order tracking, returns,
 | Frontend | React 18 |
 | Styling | CSS-in-JS (zero dependencies) |
 | API Key | Groq free tier — no cost, fast inference |
+| CI | GitHub Actions (lint, format, import check, build) |
 
 ---
 
@@ -113,19 +128,26 @@ Stella: I didn't quite catch that! I can help you with order tracking, returns,
 
 ```
 northstar-chatbot/
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # Lint + format + import + build checks
 ├── backend/
-│   ├── main.py           # FastAPI app — intent detection + all 5 chat flows
+│   ├── main.py                # FastAPI app — intent detection + all 5 chat flows
 │   ├── requirements.txt
 │   └── .env.example
 ├── frontend/
 │   ├── src/
-│   │   ├── App.js        # React chat UI — Stella persona, quick-reply buttons,
-│   │   │                  # order cards, animations
+│   │   ├── App.js             # React chat UI — Stella persona, quick-reply buttons,
+│   │   │                       # order cards, animations
 │   │   └── index.js
 │   └── public/
 │       └── index.html
 ├── docs/
-│   └── northstar-brand.png   # Brand/outro card
+│   ├── northstar-brand.png    # Brand/outro card
+│   ├── demo-screenshot.png    # Static UI screenshot
+│   └── demo.gif                # Short walkthrough gif
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
@@ -177,6 +199,12 @@ GROQ_API_KEY=your_groq_api_key_here
 - **Conversation memory** — remember context across sessions
 - **Analytics dashboard** — track which flows are hit most, drop-off points
 - **Multi-language support** — serve North American + international customers
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
 
 ---
 
