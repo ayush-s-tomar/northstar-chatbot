@@ -5,6 +5,7 @@ from groq import Groq
 import os
 import re
 from dotenv import load_dotenv
+
 load_dotenv()
 app = FastAPI(title="North Star Chatbot API")
 
@@ -21,15 +22,15 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 ORDERS = {
     "111": {
         "status": "Shipped",
-        "detail": "Your order is on its way and arriving tomorrow!"
+        "detail": "Your order is on its way and arriving tomorrow!",
     },
     "222": {
         "status": "Processing",
-        "detail": "Your order is currently being processed and will ship within 24 hours."
+        "detail": "Your order is currently being processed and will ship within 24 hours.",
     },
     "333": {
         "status": "Delivered",
-        "detail": "Your order has been delivered! Did everything arrive in good condition? If there's an issue, I can help with a return or exchange."
+        "detail": "Your order has been delivered! Did everything arrive in good condition? If there's an issue, I can help with a return or exchange.",
     },
 }
 
@@ -67,28 +68,35 @@ Say: "I didn't quite catch that — I can help with order tracking, returns & ex
 After resolving any issue, always offer: "Is there anything else I can help you with today?"
 """
 
+
 class Message(BaseModel):
     role: str
     content: str
 
+
 class ChatRequest(BaseModel):
     messages: list[Message]
+
 
 class ChatResponse(BaseModel):
     reply: str
 
+
 def get_order_context(messages: list[Message]) -> str:
     for m in reversed(messages):
         if m.role == "user":
-            match = re.search(r'#?(\d{3,})', m.content)
+            match = re.search(r"#?(\d{3,})", m.content)
             if match:
                 order_num = match.group(1)
                 if order_num in ORDERS:
                     o = ORDERS[order_num]
                     return f"\n\n[ORDER DATA: Order #{order_num} — Status: {o['status']}. Use this in your reply: {o['detail']}]"
                 else:
-                    return f"\n\n[ORDER DATA: Order #{order_num} — NOT FOUND in system.]"
+                    return (
+                        f"\n\n[ORDER DATA: Order #{order_num} — NOT FOUND in system.]"
+                    )
     return ""
+
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
@@ -107,6 +115,7 @@ async def chat(req: ChatRequest):
 
     reply = response.choices[0].message.content.strip()
     return ChatResponse(reply=reply)
+
 
 @app.get("/health")
 def health():
