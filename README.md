@@ -52,26 +52,42 @@ Type a message. The bot ("Stella") detects intent and routes to the right flow a
 | Product Recommendations | Asks 1-2 clarifying questions, recommends the right gear category |
 | Human Handoff | Detects frustration or explicit request, transitions to Live Agent state |
 | Fallback | Catches anything unrecognized, offers clear options or escalation |
+
+```
 User message -> [Intent Detection] -> [Flow Router] -> [Groq LLM Response]
-|
-Order / Returns / Recs / Handoff / Fallback
+                                          |
+              Order / Returns / Recs / Handoff / Fallback
+```
+
 ---
 
 ## Demo
 
 **Order Tracking:**
-User: Where is my order?
+
+```
+User:   Where is my order?
 Stella: Sure! What's your order number?
-User: #111
+User:   #111
 Stella: Your order is on its way and arriving tomorrow! Is there anything else I can help you with?
+```
+
 **Human Handoff:**
-User: This is ridiculous, I want a real person
+
+```
+User:   This is ridiculous, I want a real person
 Stella: I'm sorry you're frustrated. Let me connect you with a live agent right away...
-[Live Agent transfer initiated]
+        [Live Agent transfer initiated]
+```
+
 **Fallback:**
-User: asdfghjkl
+
+```
+User:   asdfghjkl
 Stella: I didn't quite catch that! I can help you with order tracking, returns,
-product recommendations, or connect you with our team.
+        product recommendations, or connect you with our team.
+```
+
 ### Mock Order Data
 
 | Order # | Status | Detail |
@@ -112,28 +128,32 @@ product recommendations, or connect you with our team.
 ---
 
 ## Project Structure
+
+```
 northstar-chatbot/
 ├── .github/
-│ └── workflows/
-│ └── ci.yml # Lint + format + import + build checks
+│   └── workflows/
+│       └── ci.yml             # Lint + format + import + build checks
 ├── backend/
-│ ├── main.py # FastAPI app - intent detection + all 5 chat flows
-│ ├── requirements.txt
-│ └── .env.example
+│   ├── main.py                # FastAPI app - intent detection + all 5 chat flows
+│   ├── requirements.txt
+│   └── .env.example
 ├── frontend/
-│ ├── src/
-│ │ ├── App.js # React chat UI - Stella persona, quick-reply buttons,
-│ │ │ # order cards, animations
-│ │ └── index.js
-│ └── public/
-│ └── index.html
+│   ├── src/
+│   │   ├── App.js             # React chat UI - Stella persona, quick-reply buttons,
+│   │   │                       # order cards, animations
+│   │   └── index.js
+│   └── public/
+│       └── index.html
 ├── docs/
-│ ├── northstar-brand.png # Brand/outro card
-│ ├── demo.gif # Short walkthrough gif
-│ └── demo-screenshot.png # Static UI screenshot
+│   ├── northstar-brand.png    # Brand/outro card
+│   ├── demo.gif                # Short walkthrough gif
+│   └── demo-screenshot.png    # Static UI screenshot
 ├── .gitignore
 ├── LICENSE
 └── README.md
+```
+
 ---
 
 ## Run Locally
@@ -159,7 +179,11 @@ npm start
 ```
 
 **Environment variables** (`backend/.env`):
+
+```
 GROQ_API_KEY=your_groq_api_key_here
+```
+
 ---
 
 ## Known Limitations
